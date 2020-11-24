@@ -1,6 +1,6 @@
 {
-  "name": "@vtex/gatsby-theme-vtex",
-  "version": "0.202.2",
+  "name": "@vtex/gatsby-theme-store",
+  "version": "0.202.0",
   "description": "Gatsby source plugin for building websites using VTEX as a data source.",
   "main": "index.js",
   "scripts": {
