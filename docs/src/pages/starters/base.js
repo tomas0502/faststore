@@ -5,9 +5,9 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 
 function STARTERS() {
   const { siteConfig } = useDocusaurusContext()
-  const data = JSON.parse(JSON.stringify(siteConfig.customFields.starters))[0]
+  const data = JSON.parse(JSON.stringify(siteConfig.customFields.starters.official))[0]
     return (
-    <Layout title="Gatsby Starter">
+    <Layout title="Base Starter">
       <StarterComponentPage data={data} />
     </Layout>
   );
