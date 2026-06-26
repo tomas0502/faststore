@@ -7,17 +7,17 @@ import { getCookie } from 'src/utils/getCookie'
 import { retry } from 'src/utils/retry'
 
 // Cookie set once the anonymous personalization session has been started,
-// so we only fire `StartSession` a single time per browser session.
+// so we only fire `StartRecommendationSession` a single time per browser session.
 const VTEX_REC_USER_START_SESSION = 'vtex-rec-user-start-session'
 
-const startSessionMutation = gql(`
-  mutation StartSession {
-    startSession
+const startRecommendationSessionMutation = gql(`
+  mutation StartRecommendationSession {
+    startRecommendationSession
   }
 `)
 
-type StartSessionData = { startSession: boolean }
-type StartSessionVariables = Record<string, never>
+type StartRecommendationSessionData = { startRecommendationSession: boolean }
+type StartRecommendationSessionVariables = Record<string, never>
 
 /**
  * Starts the anonymous recommendation/personalization session once per browser
@@ -35,14 +35,22 @@ type StartSessionVariables = Record<string, never>
  */
 export function useStartSession() {
   const [runStartSession] = useLazyQuery<
-    StartSessionData,
-    StartSessionVariables
-  >(startSessionMutation, {} as StartSessionVariables, { doNotRun: true })
+    StartRecommendationSessionData,
+    StartRecommendationSessionVariables
+  >(
+    startRecommendationSessionMutation,
+    {} as StartRecommendationSessionVariables,
+    {
+      doNotRun: true,
+    }
+  )
 
   useEffect(() => {
-    const startSessionCookie = getCookie(VTEX_REC_USER_START_SESSION)
+    const startRecommendationSessionCookie = getCookie(
+      VTEX_REC_USER_START_SESSION
+    )
 
-    if (startSessionCookie) {
+    if (startRecommendationSessionCookie) {
       return
     }
 
